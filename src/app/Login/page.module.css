@@ -1,0 +1,107 @@
+.container {
+    width: 90vw; /* Adatta la larghezza al viewport */
+    max-width: 700px; /* Limita la larghezza massima */
+    height: 80vh; /* Altezza relativa al viewport */
+    max-height: 500px; /* Limita l'altezza massima */
+    display: flex;
+    justify-content: center;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .left {
+    width: 60%;
+    padding: 2.5rem;
+    background-color: white;
+    border-top-left-radius: 1.25rem;
+    border-bottom-left-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .right {
+    width: 40%;
+    background-color: #edf0f5;
+    border-top-right-radius: 1.25rem;
+    border-bottom-right-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+  }
+  
+  h2 {
+    margin-bottom: 10%;
+    color: #333;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .nome {
+    margin-top: 2%;
+  }
+  
+  input {
+    width: 80%;
+    padding: 0.625rem; /* 10px equivalente */
+    margin-bottom: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3125rem;
+  }
+  
+  button {
+    width: 80%;
+    padding: 0.625rem;
+    background-color: #004b75;
+    color: white;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #013f63;
+  }
+  
+  .logo {
+  }
+  
+  .nome {
+    font-size: 1.125rem; /* Font-size ottimizzato per schermi più piccoli */
+    font-weight: bold;
+    margin-bottom: 1.25rem;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20%;
+  }
+  
+  .social-login {
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+  
+  .social-login span {
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  
+  .social-icons img {
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+  }
+  
