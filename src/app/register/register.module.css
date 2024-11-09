@@ -1,0 +1,103 @@
+/* Contenitore principale della registrazione, uguale al contenitore di login */
+.registerContainer {
+  width: 70%;
+  max-width: 35rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1); /* Ombra leggera */
+  margin: 5% auto;
+  padding: 2rem;
+  background-color: #ffffff; /* Colore di sfondo bianco */
+}
+
+/* Sezione superiore con titolo a sinistra e logo a destra */
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Titolo di registrazione */
+.loginTitle {
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Stile per il logo */
+.logo {
+  height: 2rem; /* Altezza del logo */
+  width: auto;  /* Mantieni le proporzioni */
+  margin-left: 1rem; /* Spazio tra il titolo e il logo */
+}
+
+/* Sezione del form, con i campi di input */
+.formSection {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Stili per gli input del form */
+.formSection input {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Bottone per la registrazione */
+.button {
+  margin-top: 1rem;
+  padding: 0.8rem 3.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #D5ABC2;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Hover sul bottone */
+.button:hover {
+  background-color: #C7C1DC;
+}
+
+/* Media query per schermi piccoli */
+@media (max-width: 768px) {
+  .registerContainer {
+    padding: 1rem;
+  }
+
+  /* Layout della sezione superiore per schermi più piccoli */
+  .topSection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Dimensione del titolo per schermi più piccoli */
+  .loginTitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  /* Dimensione del logo per schermi piccoli */
+  .logo {
+    height: 1.5rem; /* Riduci la dimensione del logo per schermi più piccoli */
+  }
+
+  /* Input e bottone con font più piccoli per schermi piccoli */
+  .formSection input,
+  .formSection .button {
+    font-size: 0.875rem;
+  }
+}

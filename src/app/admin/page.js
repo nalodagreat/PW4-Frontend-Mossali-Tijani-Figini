@@ -5,7 +5,7 @@ import styles from "@/app/user/page.module.css";
 import profiloFoto from "../images/profilo.png";
 import Image from "next/image";
 
-const ProfiliUtente = () => {
+const ProfiliAdmin = () => {
   return (
     <div className={styles.dashboardContainer}>
       {/* Primo livello - 2 box in alto */}
@@ -63,4 +63,4 @@ const ProfiliUtente = () => {
   );
 };
 
-export default ProfiliUtente;
+export default ProfiliAdmin;

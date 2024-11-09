@@ -1,41 +1,43 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import styles from '@/components/styles/RegisterForm.module.css'; // Import del CSS
+import styles from './register.module.css'; 
+import logo from "@/public/images/header/logo.png";
+import Image from 'next/image';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    phone: '',
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
   });
-  const [verificationCode, setVerificationCode] = useState('');
+  const [verificationCode, setVerificationCode] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   // Gestore della registrazione
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       // Invio della richiesta di registrazione all'API
-      const response = await fetch('http://localhost:8080/auth/register', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8080/auth/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
       const data = await response.json();
       if (data.success) {
         setIsRegistered(true); // Registrazione riuscita
-        alert('Codice di verifica inviato! Controlla la tua email o telefono.');
+        alert("Codice di verifica inviato! Controlla la tua email o telefono.");
       } else {
-        setError('Errore nella registrazione, riprova.');
+        setError("Errore nella registrazione, riprova.");
       }
     } catch (err) {
-      setError(' riprova.');
+      setError("Errore durante la registrazione, riprova.");
     }
   };
 
@@ -44,10 +46,10 @@ const RegisterPage = () => {
     const verifyUser = async () => {
       if (isRegistered && verificationCode) {
         try {
-          const response = await fetch('http://localhost:8080/auth/verify', {
-            method: 'POST',
+          const response = await fetch("http://localhost:8080/auth/verify", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               email: formData.email,
@@ -57,12 +59,12 @@ const RegisterPage = () => {
           const data = await response.json();
           if (data.success) {
             setIsVerified(true);
-            alert('Registrazione completata con successo!');
+            alert("Registrazione completata con successo!");
           } else {
-            setError('Codice di verifica errato, riprova.');
+            setError("Codice di verifica errato, riprova.");
           }
         } catch (err) {
-          setError('Errore durante la verifica, riprova.');
+          setError("Errore durante la verifica, riprova.");
         }
       }
     };
@@ -77,103 +79,72 @@ const RegisterPage = () => {
 
   return (
     <div className={styles.registerContainer}>
-      <div className={styles.contentWrapper}>
-        <div className={styles.formColumn}>
-          <div className={styles.formContent}>
-            <header className={styles.headingWrapper}>
-              <h1 className={styles.mainTitle}>c'est la vie</h1>
-              <p className={styles.subtitle}>benvenuto alla nostra patecceria</p>
-            </header>
-            {isVerified ? (
-              <p>Registrazione completata!</p>
-            ) : (
-              <form onSubmit={handleRegister}>
-                <div className={styles.inputWrapper}>
-                  <label htmlFor="name" className={styles['visually-hidden']}>Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className={styles.inputField}
-                  />
-                </div>
+      <div className={styles.topSection}>
+        <h2 className={styles.loginTitle}>Registrati</h2>
+        <Image src={logo} alt="Logo" className={styles.logo} />
+      </div>
+      <div className={styles.formSection}>
+        {isVerified ? (
+          <p>Registrazione completata!</p>
+        ) : (
+          <form onSubmit={handleRegister}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Nome"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+              className={styles.inputField}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              className={styles.inputField}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+              className={styles.inputField}
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Telefono"
+              value={formData.phone}
+              onChange={handleInputChange}
+              required
+              className={styles.inputField}
+            />
+            <button type="submit" className={styles.button}>
+              Registrati
+            </button>
+          </form>
+        )}
 
-                <div className={styles.inputWrapper}>
-                  <label htmlFor="email" className={styles['visually-hidden']}>Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className={styles.inputField}
-                  />
-                </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-                <div className={styles.inputWrapper}>
-                  <label htmlFor="password" className={styles['visually-hidden']}>Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                    className={styles.inputField}
-                  />
-                </div>
-
-                <div className={styles.inputWrapper}>
-                  <label htmlFor="phone" className={styles['visually-hidden']}>Phone</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="Phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className={styles.inputField}
-                  />
-                </div>
-
-                <button type="submit" className={styles.registerButton}>Register</button>
-              </form>
-            )}
-
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-
-            {!isVerified && isRegistered && (
-              <div>
-                <h3>Inserisci il codice di verifica</h3>
-                <input
-                  type="text"
-                  placeholder="Codice di verifica"
-                  value={verificationCode}
-                  onChange={(e) => setVerificationCode(e.target.value)}
-                  required
-                  className={styles.inputField}
-                />
-              </div>
-            )}
+        {!isVerified && isRegistered && (
+          <div>
+            <h3>Inserisci il codice di verifica</h3>
+            <input
+              type="text"
+              placeholder="Codice di verifica"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value)}
+              required
+              className={styles.inputField}
+            />
           </div>
-        </div>
-
-        <div className={styles.imageColumn}>
-          <img 
-            loading="lazy" 
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b2805c8a3eed69b7aac0797b784091484440d486b14d5e0169e52e073df7bf6d?placeholderIfAbsent=true&apiKey=88f18012b9cc432c81a833b7d6b5079d" 
-            alt="Decorative bakery image" 
-            className={styles.sideImage} 
-          />
-        </div>
+        )}
       </div>
     </div>
   );
