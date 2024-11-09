@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import styles from './register.module.css'; 
+import styles from './register.module.css';
 import logo from "@/public/images/header/logo.png";
 import Image from 'next/image';
 
@@ -17,11 +17,9 @@ const RegisterPage = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState("");
 
-  // Gestore della registrazione
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      // Invio della richiesta di registrazione all'API
       const response = await fetch("http://localhost:8080/auth/register", {
         method: "POST",
         headers: {
@@ -41,7 +39,6 @@ const RegisterPage = () => {
     }
   };
 
-  // Effetto per inviare il codice di verifica quando l'utente è registrato
   useEffect(() => {
     const verifyUser = async () => {
       if (isRegistered && verificationCode) {
@@ -71,7 +68,7 @@ const RegisterPage = () => {
     verifyUser();
   }, [isRegistered, verificationCode]);
 
-  // Gestione dell'input
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

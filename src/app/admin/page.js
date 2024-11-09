@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "@/app/user/page.module.css";
-import profiloFoto from "../images/profilo.png";
+import profiloFoto from "@/public/images/header/profilo.png";
 import Image from "next/image";
 
 const ProfiliAdmin = () => {
