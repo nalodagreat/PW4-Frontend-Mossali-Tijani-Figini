@@ -1,9 +1,10 @@
-// src/components/Header.js
+
 import Image from "next/image";
 import styles from "../styles/Header.module.css";
 import logo from "../images/logo.png";
 import profilo from "../images/profilo.png";
 import carrello from "../images/carrello.png";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -14,13 +15,13 @@ const Header = () => {
         </Link>
       </div>
       <nav className={styles.navigation}>
-        <a href="#home">Home</a>
-        <a href="#products">Prodotti</a>
-        <a href="#contacts">Contatti</a>
+        <a href="/">Home</a>
+        <a href="/Prodotti">Prodotti</a>
+        <a href="/contatti">Contatti</a>
       </nav>
       <div className={styles.navigation}>
         <div className={styles.socialIcons}>
-          <Link href="/profiloAdmin"> {/*bisogna mettere che accede o ad utente o ad admin in base al login/registrazione*/}
+          <Link href="/Login"> {/*bisogna mettere che accede o ad utente o ad admin in base al login/registrazione*/}
             <Image src={profilo} alt="Profilo" className={styles.userIcon} />
           </Link>
         </div>

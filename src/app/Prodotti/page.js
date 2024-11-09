@@ -1,5 +1,5 @@
-import ProductGrid from '../components/ProductGrid';
-import ProductCard from '../components/ProductCard';
+import ProductGrid from "../components/ProductGrid";
+import ProductCard from "../components/ProductCard";
 function ProductPage() {
   return (
     <div>
