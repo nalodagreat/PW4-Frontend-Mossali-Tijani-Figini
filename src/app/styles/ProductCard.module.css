@@ -1,0 +1,71 @@
+.productCard {
+    background-color: #fff;
+    border: 1px solid rgba(210, 210, 210, 0.6);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30px 20px 30px;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+  .productImage {
+    align-self: start;
+    height: 221px;
+    width: 205px;
+    object-fit: contain;
+    
+  }
+  
+  .productName {
+    color: #000;
+    text-align: center;
+    align-self: center;
+    margin-top: 8px;
+    font: 400 20px Montserrat, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .priceContainer {
+    align-self: end;
+    display: flex;
+    margin-top: 11px;
+    align-items: start;
+    gap: 39px;
+  }
+  
+  .productPrice {
+    color: #eb9b74;
+    text-align: center;
+    font: 700 20px Montserrat, -apple-system, Roboto, Helvetica, sans-serif;
+    margin-left: 35%;
+    
+  }
+  
+  .addToCartButton {
+    background-color: #f6d4c2;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    margin-top: 13px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    cursor: pointer;
+    
+  }
+  
+  .cartIcon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  @media (max-width: 991px) {
+    .productCard {
+      margin-top: 40px;
+    }
+    
+    .priceContainer {
+      margin-right: 10px;
+    }
+  }

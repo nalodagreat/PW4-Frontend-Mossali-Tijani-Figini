@@ -1,0 +1,63 @@
+.header {
+    background-color: #f3bc9f;
+    box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.5rem;
+    z-index: 10;
+  }
+  
+  .logoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    color: #000;
+    font: 400 1rem Montserrat, sans-serif;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 2.5rem;
+  }
+  
+  .socialIcon {
+    width: 3rem;
+  }
+  
+  .socialIconPlaceholder {
+    width: 3.5rem;
+    height: 3rem;
+  }
+  
+  /* Media query per schermi piccoli */
+  @media (max-width: 991px) {
+    .header {
+      flex-wrap: wrap;
+      padding: 1rem;
+    }
+  
+    .navigation {
+      gap: 1rem;
+      white-space: normal;
+    }
+  
+    .mainLogo, .subLogo1, .subLogo2, .socialIcon, .socialIconPlaceholder {
+      width: auto; /* Ottimizza le dimensioni per schermi più piccoli */
+    }
+  }
+  
