@@ -1,0 +1,123 @@
+.informationContainer {
+  display: flex;
+  padding: 6rem 4rem;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.leftSection,
+.centerSection,
+.rightSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+  
+}
+
+.hoursBox {
+  background-color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sideImage {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.shopInvitation {
+  text-align: left;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin-top: -3rem; 
+  width: 70%;
+}
+
+.centerImage {
+  max-height: 530px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.shopButton {
+  margin-top: 1rem;
+  padding: 0.8rem 3.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #D5ABC2;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.shopButton:hover {
+  background-color: #C7C1DC;
+}
+
+@media (max-width: 991px) {
+  .informationContainer {
+    padding: 2rem;
+  }
+  .hoursBox,
+  .shopInvitation {
+    font-size: 0.9rem;
+  }
+
+  .centerImage {
+    margin-top: 5rem;
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .informationContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .centerImage {
+    margin-top: 5rem;
+    max-height: 300px;
+  }
+
+  .shopButton {
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .informationContainer {
+    padding: 1rem;
+  }
+
+  .hoursBox,
+  .shopInvitation,
+  .shopButton {
+    font-size: 0.85rem;
+  }
+
+  .centerImage {
+    margin-top: 5rem;
+    max-height: 300px;
+  }
+}

@@ -1,0 +1,107 @@
+/* Contenitore principale */
+.carrelloContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    gap: 8rem;
+    margin: 5% auto;
+    width: 80%;
+    max-width: 1200px;
+}
+
+/* Lista Prodotti */
+.listaProdotti {
+    flex: 2;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 40vh;
+    overflow-y: auto;
+    text-align: center; /* Ripristina l'allineamento centrale */
+}
+
+.listaProdotti h2 {
+    margin-bottom: 1rem;
+}
+
+.listaProdotti table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center; /* Ripristina l'allineamento centrale nelle celle */
+}
+
+.listaProdotti th, .listaProdotti td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.rimuoviButton {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rimuoviButton:hover {
+    background-color: #e60000;
+}
+
+/* Dettagli Carrello */
+.dettagliCarrello {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+}
+
+.dettagliCarrello h2 {
+    margin-bottom: 1rem;
+}
+
+.dettagliCarrello p {
+    margin: 0.5rem 0;
+}
+
+.dettagliCarrello hr {
+    margin: 1rem 0;
+}
+
+.totale {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.prenotaOrdineButton {
+    margin-top: 1rem;
+    padding: 0.8rem 3.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #D5ABC2;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.prenotaOrdineButton:hover {
+    background-color: #C7C1DC;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carrelloContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .listaProdotti, .dettagliCarrello {
+        width: 100%;
+        height: auto;
+    }
+}
