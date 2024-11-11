@@ -28,6 +28,9 @@ export default function Account() {
             setError("Errore di rete durante il caricamento dei dati.");
         }
     };
+    useEffect(() => {
+        handleAccountInfo();
+    }, []);
 
 
     useEffect(() => {
