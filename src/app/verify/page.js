@@ -1,78 +1,64 @@
-'use client';
-
-import React, { useState } from "react";
+"use client";
+ 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import styles from "@/app/login/page.module.css";
-import logo from "@/public/images/header/logo.png";
-
-export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+ 
+export default function Verify() {
+    const [verificationCode, setVerificationCode] = useState("");
     const [error, setError] = useState("");
     const router = useRouter();
-
-    const handleLogin = async (event) => {
-        event.preventDefault();
-
+ 
+    const handleVerifyClick = async () => {
+        const requestBody = {
+            token: verificationCode,
+        };
+ 
+        console.log("Request body:", requestBody);
+ 
         try {
-            const response = await fetch("http://localhost:8080/auth/login", {
+            const response = await fetch("http://localhost:8080/auth/verify", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify(requestBody),
             });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Errore sconosciuto");
-            }
-
+ 
+            // Controlla se la risposta è ok (200-299) e se il contenuto è un JSON valido
             const data = await response.json();
-            console.log("Login effettuato con successo:", data);
-
-            if (data.role === "admin") {
-                router.push("/admin");
-            } else if (data.role === "client") {
-                router.push("/user");
+            console.log("Response data:", data);
+ 
+            if (response.ok) {
+                alert("Registrazione completata con successo!");
+                router.push("/login");
             } else {
-                throw new Error("Ruolo non riconosciuto");
+                // Se il backend restituisce un messaggio, visualizzalo
+                setError(data.message || "Codice di verifica errato, riprova.");
             }
-
-        } catch (error) {
-            setError(error.message);
+        } catch (err) {
+            // Cattura errori di rete o problemi con la risposta
+            setError("Errore durante la verifica, riprova.");
         }
     };
-
+ 
+    const handleVerificationCodeChange = (e) => {
+        setVerificationCode(e.target.value);
+    };
+ 
     return (
-        <div className={styles.container}>
-            <div className={styles.topSection}>
-                <h2 className={styles.loginTitle}>Login</h2>
-                <div className={styles.logoContainer}>
-                    <Image src={logo} alt="Logo" className={styles.logo} />
-                </div>
-            </div>
-            <div className={styles.formSection}>
-                <form onSubmit={handleLogin}>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <button type="submit" className={styles.button}>Accedi</button>
-                </form>
-                {error && <p className={styles.error}>{error}</p>}
-            </div>
+        <div>
+            <h2>Verifica</h2>
+            <p>Inserisci il codice di verifica che ti è stato inviato via email</p>
+            <input
+                type="text"
+                placeholder="Codice di verifica"
+                required
+                value={verificationCode}
+                onChange={handleVerificationCodeChange}
+            />
+            <button onClick={handleVerifyClick}>Verifica</button>
+            {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     );
 }
+ 

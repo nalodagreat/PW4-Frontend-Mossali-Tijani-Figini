@@ -26,17 +26,6 @@
   margin: 0; 
 }
 
-.logoContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.logo {
-  width: 80%; 
-  height: auto;
-  margin-left: 20%;
-}
-
 .formSection {
   display: flex;
   flex-direction: column;
@@ -93,6 +82,14 @@
 .registerLink:hover {
   color: #005b99;
 }
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -106,10 +103,6 @@
   .loginTitle {
     font-size: 1.5rem;
     text-align: center;
-  }
-
-  .logo {
-    width: 50%; 
   }
 
   .formSection input,
