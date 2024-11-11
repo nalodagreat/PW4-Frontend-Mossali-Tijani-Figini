@@ -1,8 +1,8 @@
 "use client";  // Aggiungi questa linea all'inizio del file
  
 import React, { useEffect, useState } from 'react';
-import ProductCard from './ProductCard';
-import styles from '../styles/ProductGrid.module.css';
+import ProductCard from '../card/card';
+import styles from '../grid/grid.module.css';
  
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);

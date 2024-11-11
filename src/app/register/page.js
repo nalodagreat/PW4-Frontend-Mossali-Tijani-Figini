@@ -1,150 +1,93 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from 'react';
-import styles from './register.module.css';
-import logo from "@/public/images/header/logo.png";
-import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-const RegisterPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-  });
-  const [verificationCode, setVerificationCode] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
-  const [error, setError] = useState("");
+export default function Register() {
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+    });
+    const router = useRouter();
+    const [error, setError] = useState(null);
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:8080/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-      if (data.success) {
-        setIsRegistered(true); // Registrazione riuscita
-        alert("Codice di verifica inviato! Controlla la tua email o telefono.");
-      } else {
-        setError("Errore nella registrazione, riprova.");
-      }
-    } catch (err) {
-      setError("Errore durante la registrazione, riprova.");
-    }
-  };
-
-  useEffect(() => {
-    const verifyUser = async () => {
-      if (isRegistered && verificationCode) {
-        try {
-          const response = await fetch("http://localhost:8080/auth/verify", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: formData.email,
-              verification_token: verificationCode,
-            }),
-          });
-          const data = await response.json();
-          if (data.success) {
-            setIsVerified(true);
-            alert("Registrazione completata con successo!");
-          } else {
-            setError("Codice di verifica errato, riprova.");
-          }
-        } catch (err) {
-          setError("Errore durante la verifica, riprova.");
-        }
-      }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
     };
-    verifyUser();
-  }, [isRegistered, verificationCode]);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(null);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+        try {
+            const response = await fetch('http://localhost:8080/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form),
+            });
 
-  return (
-    <div className={styles.registerContainer}>
-      <div className={styles.topSection}>
-        <h2 className={styles.loginTitle}>Registrati</h2>
-        <Image src={logo} alt="Logo" className={styles.logo} />
-      </div>
-      <div className={styles.formSection}>
-        {isVerified ? (
-          <p>Registrazione completata!</p>
-        ) : (
-          <form onSubmit={handleRegister}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Nome"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-              className={styles.inputField}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              className={styles.inputField}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-              className={styles.inputField}
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Telefono"
-              value={formData.phone}
-              onChange={handleInputChange}
-              required
-              className={styles.inputField}
-            />
-            <button type="submit" className={styles.button}>
-              Registrati
-            </button>
-          </form>
-        )}
+            if (!response.ok) {
+                throw new Error('Errore durante la registrazione');
+            }
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+            const data = await response.json();
+            alert(`Registrazione completata! Benvenuto, ${data.name}.`);
+            router.push('/verify');
+        } catch (error) {
+            setError(error.message);
+        }
+    };
 
-        {!isVerified && isRegistered && (
-          <div>
-            <h3>Inserisci il codice di verifica</h3>
-            <input
-              type="text"
-              placeholder="Codice di verifica"
-              value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value)}
-              required
-              className={styles.inputField}
-            />
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default RegisterPage;
+    return (
+        <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px' }}>
+            <h2>Registrati</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Nome</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={form.password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Numero di Telefono</label>
+                    <input
+                        type="tel"
+                        name="phoneNumber"
+                        value={form.phoneNumber}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <button type="submit">Registrati</button>
+            </form>
+        </div>
+    );
+}
