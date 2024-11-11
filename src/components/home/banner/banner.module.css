@@ -1,5 +1,5 @@
 .banner {
-    background-image: image("public/images/macarons.jpg");
+    background-image: image("public/images/home/banner/macarons.jpg");
     background-size: cover;
     background-position: center;
     height: 400px; 
