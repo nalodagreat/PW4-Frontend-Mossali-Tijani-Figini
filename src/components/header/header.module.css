@@ -41,6 +41,51 @@
   height: auto;
 }
 
+/* Aggiungi il link per "Dashboard" */
+.navigation .dashboardLink {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1rem;
+}
+
+/* header.module.css */
+
+.welcomeSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font: 400 1rem Montserrat, sans-serif;
+  color: #000;
+}
+
+.userLink {
+  color: #901010; /* Colore blu per indicare che è cliccabile */
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Animazione per cambiare colore */
+}
+
+.userLink:hover {
+  color: #005b99; /* Colore leggermente più scuro all’hover */
+  text-decoration: underline; /* Sottolineatura per enfatizzare il link */
+}
+
+.logoutButton {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.logoutButton:hover {
+  color: #d9534f; /* Colore rosso scuro per il logout all’hover */
+}
+
+
 @media (max-width: 991px) {
   .header {
     flex-wrap: wrap;

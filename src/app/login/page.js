@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "@/app/login/page.module.css";
 import logo from "@/public/images/header/logo.png";
+import Link from "next/link";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -36,11 +37,10 @@ export default function Login() {
             if (data.role === "admin") {
                 router.push("/admin");
             } else if (data.role === "client") {
-                router.push("/user");
+                window.location.href = "/";
             } else {
                 throw new Error("Ruolo non riconosciuto");
             }
-
         } catch (error) {
             setError(error.message);
         }
@@ -73,6 +73,14 @@ export default function Login() {
                     <button type="submit" className={styles.button}>Accedi</button>
                 </form>
                 {error && <p className={styles.error}>{error}</p>}
+                
+                {/* Frase "Non hai un account? Registrati!" */}
+                <p className={styles.registerPrompt}>
+                    Non hai un account?{" "}
+                    <Link href="/register" className={styles.registerLink}>
+                        Registrati!
+                    </Link>
+                </p>
             </div>
         </div>
     );
