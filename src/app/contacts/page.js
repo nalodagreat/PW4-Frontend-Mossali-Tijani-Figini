@@ -1,10 +1,15 @@
+import ContactForm from "@/components/contacts/form/form";
+import HeroContacts from "@/components/contacts/hero/hero";
+import ContactMap from "@/components/contacts/maps/maps";
+import Social from "@/components/contacts/social/social";
 
-const Contatti = () => {
+export default function Contacts() {
   return (
     <>
-      <h1>Contatti</h1>
+    <HeroContacts></HeroContacts>
+    {/*<ContactForm></ContactForm>*/}
+    <Social></Social>
+    <ContactMap></ContactMap>
     </>
   );
-};
-
-export default Contatti;
+}

@@ -1,11 +1,8 @@
 .banner {
-    background-image: image("public/images/macarons.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 400px; 
-    clip-path: polygon(0 25%, 100% 0, 100% 75%, 0% 100%); 
-    width: 100%;
+    position: relative;
+    height: 450px; 
     clip-path: polygon(0 25%, 100% 0, 100% 75%, 0% 100%);
+    width: 100%;
     overflow: hidden;
 }
 

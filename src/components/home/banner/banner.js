@@ -9,10 +9,10 @@ const Banner = () => {
       <Image
         src={bannerImg}
         alt="Macarons banner"
-        layout="fill" // Copre tutta l'area del container
-        objectFit="cover" // Adatta l'immagine all'interno dell'area
-        quality={100} // (Opzionale) imposta la qualità dell'immagine
-        priority // Carica l'immagine con priorità
+        layout="fill" 
+        objectFit="cover" 
+        quality={100} 
+        priority
       />
     </div>
   );
