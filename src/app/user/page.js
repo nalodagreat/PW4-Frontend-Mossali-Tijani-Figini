@@ -5,7 +5,7 @@ import Account from "@/components/user/accountInfo/account";
 import Products from "@/components/user/products/products";
 import Order from "@/components/user/orderLog/order";
 
-const ProfiliUtente = () => {
+export default function User () {
     return (
         <>
             <Account></Account>
@@ -15,4 +15,3 @@ const ProfiliUtente = () => {
     );
 };
 
-export default ProfiliUtente;
