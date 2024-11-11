@@ -58,14 +58,6 @@ export default function Products() {
         fetchProducts();
     }, []);
 
-    // Gestisce il cambiamento dello stock nel campo di input
-    const handleStockInputChange = (e, id) => {
-        const value = e.target.value;
-        setStockValues((prev) => ({
-            ...prev,
-            [id]: value,
-        }));
-    };
 
     return (
         <div>
@@ -105,12 +97,6 @@ export default function Products() {
                                 </button>
                             </td>
                             <td>
-                                <input
-                                    type="number"
-                                    value={stockValues[product.id] || product.stock}
-                                    onChange={(e) => handleStockInputChange(e, product.id)}
-                                    aria-label={`Modifica stock per ${product.name}`}
-                                />
                                 <button
                                     onClick={() => handleStockChange(product.id)}
                                     style={{ color: 'blue' }}
