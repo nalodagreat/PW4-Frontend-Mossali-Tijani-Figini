@@ -6,7 +6,7 @@ import styles from '../grid/grid.module.css';
  
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
- 
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
