@@ -10,7 +10,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const router = useRouter();  // Inizializza useRouter per il reindirizzamento
+    const router = useRouter();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -32,11 +32,10 @@ export default function Login() {
             const data = await response.json();
             console.log("Login effettuato con successo:", data);
 
-            // Controlla il ruolo e reindirizza di conseguenza
             if (data.role === "admin") {
-                router.push("/admin");  // Reindirizza alla pagina admin
+                router.push("/admin");
             } else if (data.role === "client") {
-                router.push("/user");  // Reindirizza alla pagina user
+                router.push("/user");
             } else {
                 throw new Error("Ruolo non riconosciuto");
             }
