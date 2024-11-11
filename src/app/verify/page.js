@@ -1,63 +1,78 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import styles from "@/app/login/page.module.css";
+import logo from "@/public/images/header/logo.png";
 
-export default function Verify() {
-    const [verificationCode, setVerificationCode] = useState("");
+export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const router = useRouter();
 
-    const handleVerifyClick = async () => {
-        const requestBody = {
-            token: verificationCode,
-        };
-
-        console.log("Request body:", requestBody);
+    const handleLogin = async (event) => {
+        event.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:8080/auth/verify", {
+            const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(requestBody),
+                body: JSON.stringify({ email, password }),
             });
 
-            // Controlla se la risposta è ok (200-299) e se il contenuto è un JSON valido
-            const data = await response.json();
-            console.log("Response data:", data);
-
-            if (response.ok) {
-                alert("Registrazione completata con successo!");
-                router.push("/login");
-            } else {
-                // Se il backend restituisce un messaggio, visualizzalo
-                setError(data.message || "Codice di verifica errato, riprova.");
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Errore sconosciuto");
             }
-        } catch (err) {
-            // Cattura errori di rete o problemi con la risposta
-            setError("Errore durante la verifica, riprova.");
+
+            const data = await response.json();
+            console.log("Login effettuato con successo:", data);
+
+            if (data.role === "admin") {
+                router.push("/admin");
+            } else if (data.role === "client") {
+                router.push("/user");
+            } else {
+                throw new Error("Ruolo non riconosciuto");
+            }
+
+        } catch (error) {
+            setError(error.message);
         }
     };
 
-    const handleVerificationCodeChange = (e) => {
-        setVerificationCode(e.target.value);
-    };
-
     return (
-        <div>
-            <h2>Verifica</h2>
-            <p>Inserisci il codice di verifica che ti è stato inviato via email</p>
-            <input
-                type="text"
-                placeholder="Codice di verifica"
-                required
-                value={verificationCode}
-                onChange={handleVerificationCodeChange}
-            />
-            <button onClick={handleVerifyClick}>Verifica</button>
-            {error && <p style={{ color: "red" }}>{error}</p>}
+        <div className={styles.container}>
+            <div className={styles.topSection}>
+                <h2 className={styles.loginTitle}>Login</h2>
+                <div className={styles.logoContainer}>
+                    <Image src={logo} alt="Logo" className={styles.logo} />
+                </div>
+            </div>
+            <div className={styles.formSection}>
+                <form onSubmit={handleLogin}>
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit" className={styles.button}>Accedi</button>
+                </form>
+                {error && <p className={styles.error}>{error}</p>}
+            </div>
         </div>
     );
 }
