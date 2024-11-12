@@ -35,7 +35,7 @@ export default function Login() {
             console.log("Login effettuato con successo:", data);
 
             if (data.role === "admin") {
-                router.push("/admin");
+                window.location.href ="/admin";
             } else if (data.role === "client") {
                 window.location.href = "/";
             } else {
