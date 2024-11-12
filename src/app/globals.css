@@ -36,6 +36,15 @@ a {
   text-decoration: none;
 }
 
+.bg {
+  background-image: url("../public/images/contacts/imageHero.png");
+  background-size: cover;       
+  background-position: center;     
+  background-repeat: no-repeat;    
+  min-height: 100vh;             
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
