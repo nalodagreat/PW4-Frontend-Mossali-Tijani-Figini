@@ -1,16 +1,24 @@
+/* Centra il contenitore del form nella pagina */
 .container {
   width: 70%;
   max-width: 35rem;
-  height: auto; 
+  height: auto;
   display: flex;
-  flex-direction: column; 
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;     /* Centra orizzontalmente */
   border-radius: 1.25rem;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
-  margin: 5% auto;
+  margin: 0 auto;          /* Centra il contenitore orizzontalmente */
   padding: 2rem;
   background-color: #ffffff;
+  min-height: 10vh;       /* Imposta l'altezza a 100% della finestra */
+  position: absolute;      /* Usa la posizione assoluta */
+  top: 50%;                /* Posiziona a metà della finestra */
+  left: 50%;               /* Posiziona a metà della finestra */
+  transform: translate(-50%, -50%); /* Sposta il contenitore per centrarlo */
 }
+
 
 .topSection {
   display: flex;
