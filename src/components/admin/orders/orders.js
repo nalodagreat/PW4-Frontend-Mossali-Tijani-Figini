@@ -106,7 +106,6 @@ export default function Orders() {
             <table>
                 <thead>
                 <tr>
-                    <th>ID Ordine</th>
                     <th>Cliente</th>
                     <th>Dettagli</th>
                     <th>Prezzo</th>
@@ -123,7 +122,6 @@ export default function Orders() {
                 ) : (
                     orders.map((order) => (
                         <tr key={order.id}>
-                            <td>{order.id}</td>
                             <td>{order.userEmail}</td>
                             <td>{JSON.stringify(order.details)}</td>
                             <td>{order.totalPrice}</td>
