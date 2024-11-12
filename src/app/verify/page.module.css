@@ -1,0 +1,83 @@
+/* Contenitore principale per la pagina di verifica */
+.verifyContainer {
+    width: 70%;
+    max-width: 25rem;
+    padding: 2rem;
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1.25rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* Titolo e descrizione */
+.verifyTitle {
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+}
+
+.verifyDescription {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Campo di input per il codice di verifica */
+.verifyInput {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Bottone di verifica */
+.verifyButton {
+    padding: 0.8rem 3.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #D5ABC2;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.verifyButton:hover {
+    background-color: #C7C1DC;
+}
+
+/* Messaggio di errore */
+.errorMessage {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 768px) {
+    .verifyContainer {
+        padding: 1rem;
+    }
+
+    .verifyTitle {
+        font-size: 1.5rem;
+    }
+
+    .verifyDescription,
+    .verifyInput,
+    .verifyButton {
+        font-size: 0.875rem;
+    }
+}

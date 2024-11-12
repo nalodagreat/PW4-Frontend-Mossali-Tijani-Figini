@@ -34,17 +34,17 @@ export default function Login() {
       const data = await response.json();
       console.log("Login effettuato con successo:", data);
 
-      if (data.role === "admin") {
-        router.push("/admin");
-      } else if (data.role === "client") {
-        window.location.href = "/";
-      } else {
-        throw new Error("Ruolo non riconosciuto");
-      }
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+            if (data.role === "admin") {
+                window.location.href ="/admin";
+            } else if (data.role === "client") {
+                window.location.href = "/";
+            } else {
+                throw new Error("Ruolo non riconosciuto");
+            }
+        } catch (error) {
+            setError(error.message);
+        }
+    };
 
   return (
     <div className={styles.container}>
