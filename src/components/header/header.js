@@ -70,7 +70,7 @@ const Header = () => {
       <div className={styles.socialIcons}>
         {isLoggedIn ? (
           <div className={styles.welcomeSection}>
-            <Link href={isAdmin ? "/admin" : "/"} className={styles.userLink}>
+            <Link href={isAdmin ? "/admin" : "/user"} className={styles.userLink}>
               Ciao, {userName}
             </Link>
             <button onClick={handleLogout} className={styles.logoutButton}>

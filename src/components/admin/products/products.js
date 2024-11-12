@@ -5,7 +5,6 @@ export default function Products() {
     const [products, setProducts] = useState([]);
     const [stockValues, setStockValues] = useState({});
 
-    // Recupera i prodotti dal backend
     const fetchProducts = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/product', {
@@ -27,7 +26,6 @@ export default function Products() {
         }
     };
 
-    // Funzione per eliminare un prodotto
     const handleDelete = async (id) => {
         try {
             const response = await fetch(`http://localhost:8080/api/product/${id}`, {

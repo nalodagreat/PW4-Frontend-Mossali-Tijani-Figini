@@ -9,14 +9,15 @@ export default function Orders() {
         try {
             const response = await fetch('http://localhost:8080/api/order', {
                 method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 credentials: "include",
             });
 
             if (response.ok) {
-                const data = await response.json();
+                const contentType = response.headers.get("content-type");
+                const data = contentType && contentType.includes("application/json")
+                    ? await response.json()
+                    : { message: await response.text() };
                 setOrders(data);
             } else {
                 console.error('Errore nel recupero degli ordini');
@@ -75,7 +76,7 @@ export default function Orders() {
                 console.error('Errore durante la richiesta PUT:', error);
                 alert('Errore durante la richiesta PUT');
             }
-        } else if (order.status === 'accepted') {x
+        } else if (order.status === 'accepted') {
             try {
                 const response = await fetch(`http://localhost:8080/api/order/deliver/${order.id}`, {
                     method: 'PUT',
