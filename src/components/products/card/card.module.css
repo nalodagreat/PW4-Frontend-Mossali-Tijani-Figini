@@ -9,6 +9,7 @@
   width: 300px; /* Aumenta la larghezza della card */
   position: relative; /* Per il posizionamento assoluto del carrello */
   gap: 12px; /* Spazio tra gli elementi */
+  top:5%;
 }
  
 .productImage {

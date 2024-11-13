@@ -1,12 +1,102 @@
+.container {
+  display: flex;
+}
+
+.carelloBeforeOrder
+{
+  font-weight: bold;
+
+}
+
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 57px;
+  margin-top: 30px;
   padding: 0 10px;
+  margin-left: 5%;
 }
  
+.productGrid input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.orderButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.orderButton:hover {
+  background-color: #45a049;
+}
+
+.commentAndOrder {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cartItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartItem .productDetails {
+ display: flex;
+ flex-direction: column;
+ width: 75px;
+}
+
+.cartItem .productInformation {
+  font-size: 10px;
+ }
  
+
+.cartItem .productNameAndRemove {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.cartItem button {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.cartItem button:hover {
+  background-color: #e53935;
+}
+
+.cartContainer 
+{
+  position: fixed;
+  height: 100vh;
+  padding-left: 20px;
+  margin-left: 7%;
+  margin-top:15%;
+}
+.productName{
+  font-weight: bold;
+}
   @media (max-width: 991px) {
     .productGrid {
       grid-template-columns: repeat(2, 1fr);
@@ -14,8 +104,10 @@
     }
   }
  
-  @media (max-width: 767px) {
+  @media (max-width: 767px) 
+  {
     .productGrid {
       grid-template-columns: 1fr;
     }
   }
+  
