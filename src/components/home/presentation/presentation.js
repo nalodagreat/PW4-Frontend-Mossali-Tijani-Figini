@@ -1,5 +1,5 @@
 import styles from "@/components/home/presentation/presentation.module.css";
-import imageChef from "@/public/images/home/presentation/pasticciere.webp";
+import chef from "@/public/images/home/presentation/pasticciere.webp";
 import Image from "next/image";
 
 const Presentation = () => {
@@ -34,7 +34,7 @@ const Presentation = () => {
         </p>
       </div>
       <div className={styles.right}>
-        <Image src={imageChef} className={styles.image} />
+        <Image src={chef} alt={chef} className={styles.image} />
       </div>
     </div>
   );

@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 
 export default function Products() {
     const [products, setProducts] = useState([]);
-    const [stockValues, setStockValues] = useState({});
 
     const fetchProducts = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/product', {
                 method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 credentials: "include",
             });
 
@@ -26,13 +22,49 @@ export default function Products() {
         }
     };
 
+    const handleAddProduct = async () => {
+        const newProduct = {
+            name: prompt('Nome del prodotto'),
+            description: prompt('Descrizione del prodotto'),
+            ingredients: prompt('Ingredienti del prodotto'),
+            price: parseFloat(prompt('Prezzo del prodotto')),
+            stock: parseInt(prompt('Quantità disponibile')),
+            image: prompt('URL dell\'immagine del prodotto'),
+            availability: true,
+        };
+
+        if (!newProduct.name || !newProduct.price || !newProduct.description || !newProduct.stock) {
+            alert('Inserisci tutti i campi richiesti');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:8080/api/product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(newProduct),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setProducts([...products, data]); // Aggiungi il prodotto senza duplicare ID
+                alert('Prodotto aggiunto con successo!');
+            } else {
+                console.error('Errore nell\'aggiunta del prodotto');
+                alert('Errore nell\'aggiunta del prodotto');
+            }
+        } catch (error) {
+            console.error('Errore durante la richiesta POST:', error);
+            alert('Errore durante la richiesta POST');
+        }
+    };
+
     const handleDelete = async (id) => {
         try {
             const response = await fetch(`http://localhost:8080/api/product/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 credentials: "include",
             });
 
@@ -49,17 +81,14 @@ export default function Products() {
         }
     };
 
-    const handleStockChange = async (id) => {
-    }
-
     useEffect(() => {
         fetchProducts();
     }, []);
 
-
     return (
         <div>
             <h1>Prodotti</h1>
+            <button onClick={handleAddProduct}>Aggiungi prodotto</button>
 
             <table>
                 <thead>
@@ -69,13 +98,14 @@ export default function Products() {
                     <th>Prezzo</th>
                     <th>Descrizione</th>
                     <th>Disponibilità</th>
-                    <th>Azioni</th>
+                    <th>Elimina</th>
+                    <th>Modifica stock</th>
                 </tr>
                 </thead>
                 <tbody>
                 {products.length === 0 ? (
                     <tr>
-                        <td colSpan="6">Nessun prodotto trovato</td>
+                        <td colSpan="7">Nessun prodotto trovato</td>
                     </tr>
                 ) : (
                     products.map((product) => (
