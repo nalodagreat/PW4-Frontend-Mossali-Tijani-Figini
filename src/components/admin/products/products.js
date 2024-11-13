@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 export default function Products() {
     const [products, setProducts] = useState([]);
@@ -7,7 +7,7 @@ export default function Products() {
         try {
             const response = await fetch('http://localhost:8080/api/product', {
                 method: "GET",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 credentials: "include",
             });
 
@@ -22,7 +22,7 @@ export default function Products() {
         }
     };
 
-    const handleAddProduct = async () => {
+    const handleAdd = async () => {
         const newProduct = {
             name: prompt('Nome del prodotto'),
             description: prompt('Descrizione del prodotto'),
@@ -41,14 +41,14 @@ export default function Products() {
         try {
             const response = await fetch('http://localhost:8080/api/product', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
                 body: JSON.stringify(newProduct),
             });
 
             if (response.ok) {
                 const data = await response.json();
-                setProducts([...products, data]); // Aggiungi il prodotto senza duplicare ID
+                setProducts([...products, data]);
                 alert('Prodotto aggiunto con successo!');
             } else {
                 console.error('Errore nell\'aggiunta del prodotto');
@@ -64,7 +64,7 @@ export default function Products() {
         try {
             const response = await fetch(`http://localhost:8080/api/product/${id}`, {
                 method: 'DELETE',
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 credentials: "include",
             });
 
@@ -81,6 +81,57 @@ export default function Products() {
         }
     };
 
+    const handleUpdate = async (id) => {
+        try {
+            const newName = prompt('Nuovo nome del prodotto');
+            const newDescription = prompt('Nuova descrizione del prodotto');
+            const newIngredients = prompt('Nuovi ingredienti del prodotto');
+            const newPrice = parseFloat(prompt('Nuovo prezzo del prodotto'));
+            const newStock = parseInt(prompt('Nuova quantità disponibile'));
+            const newImage = prompt('Nuovo URL dell\'immagine del prodotto');
+            const newAvailability = true;
+
+            if (!newName || !newPrice || !newDescription || !newStock) {
+                alert('Inserisci tutti i campi richiesti');
+                return;
+            }
+
+            const updatedProduct = {
+                name: newName,
+                description: newDescription,
+                ingredients: newIngredients,
+                price: newPrice,
+                stock: newStock,
+                image: newImage,
+                availability: newAvailability,
+            };
+
+            const response = await fetch(`http://localhost:8080/api/product/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify(updatedProduct),
+            });
+
+            if (response.ok) {
+                const data = response.headers.get('Content-Length') !== '0' ? await response.json() : updatedProduct;
+
+                setProducts(products.map(product => product.id === id ? data : product));
+                alert('Prodotto modificato con successo!');
+            } else {
+                console.error('Errore nella modifica del prodotto');
+                alert('Errore nella modifica del prodotto');
+            }
+        } catch (error) {
+            console.error('Errore durante la richiesta PUT:', error);
+            alert('Errore durante la richiesta PUT');
+        }
+    };
+
+
+
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -88,7 +139,7 @@ export default function Products() {
     return (
         <div>
             <h1>Prodotti</h1>
-            <button onClick={handleAddProduct}>Aggiungi prodotto</button>
+            <button onClick={handleAdd}>Aggiungi prodotto</button>
 
             <table>
                 <thead>
@@ -99,7 +150,7 @@ export default function Products() {
                     <th>Descrizione</th>
                     <th>Disponibilità</th>
                     <th>Elimina</th>
-                    <th>Modifica stock</th>
+                    <th>Modifica</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -118,7 +169,7 @@ export default function Products() {
                             <td>
                                 <button
                                     onClick={() => handleDelete(product.id)}
-                                    style={{ color: 'red' }}
+                                    style={{color: 'red'}}
                                     aria-label={`Elimina prodotto ${product.name}`}
                                 >
                                     Elimina
@@ -126,9 +177,9 @@ export default function Products() {
                             </td>
                             <td>
                                 <button
-                                    onClick={() => handleStockChange(product.id)}
-                                    style={{ color: 'blue' }}
-                                    aria-label={`Modifica stock prodotto ${product.name}`}
+                                    onClick={() => handleUpdate(product.name)}
+                                    style={{color: 'blue'}}
+                                    aria-label={`Modifica prodotto ${product.name}`}
                                 >
                                     Modifica
                                 </button>
