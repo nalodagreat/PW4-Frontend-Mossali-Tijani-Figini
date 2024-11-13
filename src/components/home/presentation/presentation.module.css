@@ -22,15 +22,16 @@
     margin-bottom: 1rem;
     line-height: 1.2;
     font-weight: bold;
+    width: 100%;
   }
   
   .paragraph {
-    font-size: 1rem;
+    font-size: 0.96rem;
     line-height: 1.8; 
     text-align: justify;
     margin-bottom: 20px;
     white-space: pre-line; 
-    width: 85%;
+    width: 90%;
   }
   
   /* Parte destra (Immagine) */
@@ -68,15 +69,17 @@
   @media (max-width: 600px) {
     .presentazioneContainer {
       flex-direction: column;
-      padding: 60px 20px;
+      padding: 60px 40px;
     }
   
     .title {
       font-size: 1.5rem;
+      margin-left: 30px;
     }
   
     .paragraph {
       font-size: 0.95rem;
+      margin-left: 30px;
     }
   
     .right {

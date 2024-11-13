@@ -7,6 +7,7 @@
   justify-content: space-between;
   padding: 0.6rem 1rem;
   z-index: 10;
+  position: relative;
 }
 
 .logoContainer {
@@ -41,63 +42,81 @@
   height: auto;
 }
 
-/* Aggiungi il link per "Dashboard" */
-.navigation .dashboardLink {
-  text-decoration: none;
-  color: inherit;
-  font-size: 1rem;
-}
-
-/* header.module.css */
-
-.welcomeSection {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font: 400 1rem Montserrat, sans-serif;
-  color: #000;
-}
-
-.userLink {
-  color: #901010; /* Colore blu per indicare che è cliccabile */
-  font-weight: bold;
-  text-decoration: none;
+/* Hamburger Menu */
+.hamburger {
+  display: none;
   cursor: pointer;
-  transition: color 0.3s ease; /* Animazione per cambiare colore */
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-.userLink:hover {
-  color: #005b99; /* Colore leggermente più scuro all’hover */
-  text-decoration: underline; /* Sottolineatura per enfatizzare il link */
+.burgerLine {
+  width: 2rem;
+  height: 0.2rem;
+  background-color: #000;
 }
 
-.logoutButton {
-  background-color: transparent;
-  border: none;
+/* X per chiudere il menu */
+.closeMenu {
+  position: absolute;
+  top: -0.3rem;
+  right: 1rem;
+  font-size: 4rem;
   color: #000;
   cursor: pointer;
-  font-weight: bold;
-  text-decoration: underline;
-  transition: color 0.3s ease;
 }
-
-.logoutButton:hover {
-  color: #d9534f; /* Colore rosso scuro per il logout all’hover */
-}
-
 
 @media (max-width: 991px) {
   .header {
-    flex-wrap: wrap;
     padding: 1rem;
   }
 
-  .navigation {
-    gap: 1rem;
-    white-space: normal;
+  .logoContainer {
+    margin-right: auto;
   }
 
-  .mainLogo, .subLogo1, .subLogo2, .userIcon, .cartIcon {
-    width: auto;
+  .hamburger {
+    display: flex;
+  }
+
+  .navigation {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    background-color: #f3bc9f;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.5s ease-in-out; /* Animazione più lenta */
+  }
+
+  .navigation a {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .navigation .userLink,
+  .navigation .logoutButton {
+    font-size: 1.2rem;
+  }
+
+  /* Menu aperto */
+  .menuOpen {
+    right: 0;
+  }
+
+  /* Logout in basso a destra */
+  .logoutButton {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background: transparent;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
   }
 }

@@ -1,95 +1,31 @@
-.dashboardContainer {
+.container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
   padding: 2rem;
-  gap: 3rem;
-  margin-top: 5%;
+  gap: -2rem; 
 }
 
-.topRow, .bottomRow {
-  display: flex;
-  gap: 4rem;
-  justify-content: center; 
-}
-
-.profileBox {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #f9f9f9;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.componentBox {
   flex: 1;
-  height: 200px;
-  max-width: 400px;
+  max-width: 49%; 
 }
 
-.profileImage {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 1rem;
+
+.orderBox {
+  height: 300px; 
+  overflow-y: auto; 
 }
 
-.welcomeBox {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
 
-.orderTrackingBox,
-.notificationsBox,
-.orderHistoryBox {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-  text-align: left;
-  background-color: #f9f9f9;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  height: 200px;
-  max-width: 400px;
-}
-
-.orderTrackingBox h2,
-.notificationsBox h2,
-.orderHistoryBox h2 {
-  margin-bottom: 1rem; 
-  text-align: left;
-}
-
-.orderTrackingBox p,
-.notificationsBox ul,
-.orderHistoryBox ul {
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.notificationsBox ul,
-.orderHistoryBox ul {
-  padding-left: 0;
-}
-
-.notificationsBox li,
-.orderHistoryBox li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Responsive */
+/* Responsive per schermi più piccoli */
 @media (max-width: 768px) {
-  .topRow, .bottomRow {
+  .container {
     flex-direction: column;
+    align-items: center;
   }
 
-  .profileBox, .orderTrackingBox, .notificationsBox, .orderHistoryBox {
-    width: 100%;
-    height: auto;
+  .componentBox {
+    max-width: 100%;
   }
 }

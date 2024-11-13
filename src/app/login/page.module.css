@@ -1,22 +1,22 @@
-/* Centra il contenitore del form nella pagina */
+
 .container {
   width: 70%;
   max-width: 35rem;
   height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center;     /* Centra orizzontalmente */
+  justify-content: center; 
+  align-items: center;     
   border-radius: 1.25rem;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
-  margin: 0 auto;          /* Centra il contenitore orizzontalmente */
+  margin: 0 auto;         
   padding: 2rem;
   background-color: #ffffff;
-  min-height: 10vh;       /* Imposta l'altezza a 100% della finestra */
-  position: absolute;      /* Usa la posizione assoluta */
-  top: 50%;                /* Posiziona a metà della finestra */
-  left: 50%;               /* Posiziona a metà della finestra */
-  transform: translate(-50%, -50%); /* Sposta il contenitore per centrarlo */
+  min-height: 10vh;       
+  position: absolute;     
+  top: 50%;               
+  left: 50%;              
+  transform: translate(-50%, -50%); 
 }
 
 
@@ -116,5 +116,11 @@
   .formSection input,
   .formSection .button {
     font-size: 0.875rem;
+  }
+
+  .logo{
+    width: auto;
+    margin-top: 1.5rem;
+    height: 45px;
   }
 }

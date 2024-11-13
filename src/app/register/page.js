@@ -54,8 +54,6 @@ export default function Register() {
             src={logoRegister}
             alt="Logo"
             className={styles.logo}
-            width={200}
-            height={"auto"}
           />
         </Link>
       </div>
