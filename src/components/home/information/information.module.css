@@ -3,6 +3,7 @@
   padding: 6rem 4rem;
   justify-content: space-around;
   align-items: stretch;
+  gap: 2rem; 
 }
 
 .leftSection,
@@ -13,7 +14,6 @@
   flex-direction: column;
   align-items: center;
   gap: 6rem;
-  
 }
 
 .hoursBox {
@@ -46,7 +46,7 @@
   text-align: left;
   font-size: 1.5rem;
   padding: 1rem;
-  margin-top: -3rem; 
+  margin-top: -3rem;
   width: 70%;
 }
 
@@ -77,6 +77,7 @@
   .informationContainer {
     padding: 2rem;
   }
+
   .hoursBox,
   .shopInvitation {
     font-size: 0.9rem;
@@ -93,17 +94,33 @@
     flex-direction: column;
     align-items: center;
     padding: 1.5rem;
+    gap: 3rem; 
+  }
+
+  .leftSection,
+  .centerSection,
+  .rightSection {
+    gap: 3rem; 
+  }
+
+  .hoursBox {
+    max-width: 260px; 
   }
 
   .centerImage {
-    margin-top: 5rem;
-    max-height: 300px;
+    margin-top: 3rem; 
+    max-height: 350px; 
   }
 
-  .shopButton {
-    padding: 0.6rem 1.2rem;
+  .sideImage {
+    max-width: 280px; 
+  }
+
+  .shopButton{
+    padding: 0.5rem 2.5rem;
   }
 }
+
 
 @media (max-width: 480px) {
   .informationContainer {
@@ -116,8 +133,12 @@
     font-size: 0.85rem;
   }
 
+  .shopButton{
+    padding: 0.5rem 2.5rem;
+  }
+
   .centerImage {
     margin-top: 5rem;
-    max-height: 300px;
+    min-height: 300px;
   }
 }
