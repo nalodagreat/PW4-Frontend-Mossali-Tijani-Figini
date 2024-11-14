@@ -59,7 +59,7 @@ export default function Clients() {
 
   return (
     <div className={styles.container}>
-      <h1>Clienti</h1>
+      <h1>Clienti</h1><br/>
       <div className={styles.cardsContainer}>
         {clients.length === 0 ? (
           <p className={styles.noClients}>Nessun cliente trovato</p>
