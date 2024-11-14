@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import styles from "./order.module.css"; 
 
 export default function Order() {
     const [orders, setOrders] = useState(null);
     const [error, setError] = useState("");
     const [email, setEmail] = useState("");
 
-    // Funzione per ottenere i dettagli dell'utente (inclusa l'email)
     const handleAccountInfo = async () => {
         try {
             const response = await fetch("http://localhost:8080/auth/profile", {
@@ -63,46 +63,48 @@ export default function Order() {
     }, [email]);
 
     if (error) {
-        return <div style={{ color: "red" }}>Errore: {error}</div>;
+        return <div className={styles.errorMessage}>Errore: {error}</div>;
     }
 
     if (!orders) {
-        return <div>Caricamento...</div>;
+        return <div className={styles.loadingMessage}>Caricamento...</div>;
     }
 
     return (
-        <div>
-            <h1>I tuoi ordini</h1>
-            {orders.length === 0 ? (
-                <p>Non hai ordini.</p>
-            ) : (
-                <ul>
-                    {orders.map((order) => (
-                        <li key={order.id}>
-                            <h3>Ordine: {order.id}</h3>
-                            <p>Data Ordine: {new Date(order.orderDate).toLocaleDateString()}</p>
-                            <p>Data Consegna: {new Date(order.deliverDate).toLocaleDateString()}</p>
-                            <p>Commento: {order.comment}</p>
-                            <p>Prezzo Totale: {order.totalPrice}€</p>
-                            <p>Status: {order.status}</p>
-                            <h4>Dettagli Ordine:</h4>
-                            <ul>
-                                {Object.keys(order.details).map((productId) => {
-                                    const detail = order.details[productId];
-                                    return (
-                                        <li key={productId}>
-                                            <p>Prodotto ID: {productId}</p>
-                                            <p>Nome: {detail.name}</p>
-                                            <p>Quantità: {detail.quantity}</p>
-                                            <p>Prezzo: {detail.price}€</p>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </li>
-                    ))}
-                </ul>
-            )}
+        <div className={styles.container}>
+            <div className={styles.orderBox}>
+                <h1>I tuoi ordini</h1>
+                {orders.length === 0 ? (
+                    <p>Non hai ordini.</p>
+                ) : (
+                    <ul>
+                        {orders.map((order) => (
+                            <li key={order.id}>
+                                <h3>Ordine: {order.id}</h3>
+                                <p>Data Ordine: {new Date(order.orderDate).toLocaleDateString()}</p>
+                                <p>Data Consegna: {new Date(order.deliverDate).toLocaleDateString()}</p>
+                                <p>Commento: {order.comment}</p>
+                                <p>Prezzo Totale: {order.totalPrice}€</p>
+                                <p>Status: {order.status}</p>
+                                <h4>Dettagli Ordine:</h4>
+                                <ul>
+                                    {Object.keys(order.details).map((productId) => {
+                                        const detail = order.details[productId];
+                                        return (
+                                            <li key={productId}>
+                                                <p>Prodotto ID: {productId}</p>
+                                                <p>Nome: {detail.name}</p>
+                                                <p>Quantità: {detail.quantity}</p>
+                                                <p>Prezzo: {detail.price}€</p>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
     );
 }

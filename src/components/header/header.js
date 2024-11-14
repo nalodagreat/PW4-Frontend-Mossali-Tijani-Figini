@@ -1,19 +1,17 @@
-// header.jsx
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "@/components/header/header.module.css";
 import logo from "@/public/images/header/logo.png";
-import carrello from "@/public/images/header/carrello.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import profilo from "@/public/images/header/profilo.png";
-
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // Stato del menu hamburger
   const router = useRouter();
 
   useEffect(() => {
@@ -55,6 +53,20 @@ const Header = () => {
     }
   };
 
+  // Funzione per chiudere il menu cliccando fuori dal menu
+  const handleOutsideClick = (e) => {
+    if (menuOpen && !e.target.closest(`.${styles.navigation}`) && !e.target.closest(`.${styles.hamburger}`)) {
+      setMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [menuOpen]);
+
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
@@ -62,32 +74,42 @@ const Header = () => {
           <Image src={logo} alt="Logo" style={{ marginTop: "0.5rem" }} />
         </Link>
       </div>
-      <nav className={styles.navigation}>
+
+      {/* Bottone hamburger per dispositivi mobili */}
+      <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
+        <div className={styles.burgerLine}></div>
+        <div className={styles.burgerLine}></div>
+        <div className={styles.burgerLine}></div>
+      </div>
+
+      {/* Menu navigazione */}
+      <nav className={`${styles.navigation} ${menuOpen ? styles.menuOpen : ""}`}>
+        {/* X per chiudere il menu */}
+        <div className={styles.closeMenu} onClick={() => setMenuOpen(false)}>
+          <span>&times;</span>
+        </div>
+
         <a href="/">Home</a>
         <a href="/products">Prodotti</a>
         <a href="/contacts">Contatti</a>
-      </nav>
-      <div className={styles.socialIcons}>
         {isLoggedIn ? (
           <div className={styles.welcomeSection}>
             <Link href={isAdmin ? "/admin" : "/user"} className={styles.userLink}>
               Ciao, {userName}
             </Link>
-            <button onClick={handleLogout} className={styles.logoutButton}>
-              Logout
-            </button>
           </div>
         ) : (
           <Link href="/login">
             <Image src={profilo} alt="Profilo" className={styles.userIcon} />
           </Link>
         )}
-        <Link href="/cart">
-          <div className={styles.shoppingCart}>
-            <Image src={carrello} alt="Carrello" className={styles.cartIcon} />
-          </div>
-        </Link>
-      </div>
+        {/* Logout in basso a destra */}
+        {isLoggedIn && (
+          <button onClick={handleLogout} className={styles.logoutButton}>
+            Logout
+          </button>
+        )}
+      </nav>
     </header>
   );
 };

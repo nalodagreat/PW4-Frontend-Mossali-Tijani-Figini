@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import styles from "./account.module.css";
+
+
 
 export default function Account() {
     const [userInfo, setUserInfo] = useState(null);
@@ -38,21 +41,22 @@ export default function Account() {
     }, []);
 
     return (
-        <div>
-            <h2>Informazioni Account</h2>
-
-            {error && <p style={{ color: "red" }}>{error}</p>}
-
-            {userInfo ? (
-                <div>
-                    <p><strong>Nome:</strong> {userInfo.name}</p>
-                    <p><strong>Email:</strong> {userInfo.email}</p>
-                    <p><strong>Telefono:</strong> {userInfo.phoneNumber}</p>
-                    <p><strong>Ruolo:</strong> {userInfo.role}</p>
-                </div>
-            ) : (
-                <p>Caricamento informazioni account...</p>
-            )}
+        <div className={styles.container}>
+            <div className={styles.accountBox}>
+                <h2>Informazioni Account</h2>
+                {error && <p className={styles.errorMessage}>{error}</p>}
+                {userInfo ? (
+                    <div>
+                        <p><strong>Nome:</strong> {userInfo.name}</p>
+                        <p><strong>Email:</strong> {userInfo.email}</p>
+                        <p><strong>Telefono:</strong> {userInfo.phoneNumber}</p>
+                        <p><strong>Ruolo:</strong> {userInfo.role}</p>
+                    </div>
+                ) : (
+                    <p>Caricamento informazioni account...</p>
+                )}
+            </div>
         </div>
     );
+    
 }
