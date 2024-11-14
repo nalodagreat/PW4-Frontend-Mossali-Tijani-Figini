@@ -158,19 +158,17 @@ const ProductGrid = () => {
                     />
                 ))}
             </section>
-
-            <h2>Carrello</h2>
             <div className={styles.cartContainer}>
                 {Object.keys(cart).length === 0 ? (
-                    <p>Il carrello è vuoto</p>
+                    <p className={styles.carelloBeforeOrder}>Il carrello è vuoto</p>
                 ) : (
                     Object.keys(cart).map((productId) => {
                         const product = products.find((p) => p.id === parseInt(productId, 10));
                         return product ? (
                             <div key={productId} className={styles.cartItem}>
-                                <span>{product.name}</span>
-                                <span>Quantità: {cart[productId].quantity}</span>
-                                <span>Prezzo: {product.price * cart[productId].quantity} €</span>
+                                <span className={styles.productName}>{product.name}</span>
+                                <span style={{fontSize:"11px"}}>Quantità: {cart[productId].quantity}</span>
+                                <span  style={{fontSize:"11px"}}>Prezzo: {product.price * cart[productId].quantity} €</span>
                                 <button onClick={() => handleRemoveFromCart(productId)}>Rimuovi</button>
                             </div>
                         ) : null;

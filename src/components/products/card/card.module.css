@@ -80,7 +80,8 @@
 .productAvailability.unavailable {
   color: #dc3545; /* Rosso per stato "Esaurito" */
 }
- 
+
+
  
   @media (max-width: 991px) {
     .productCard {
