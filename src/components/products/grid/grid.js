@@ -7,7 +7,7 @@ const ProductGrid = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState({});
     const [userEmail, setUserEmail] = useState("");
-    const [userRole, setUserRole] = useState(""); // Stato per il ruolo dell'utente
+    const [userRole, setUserRole] = useState("");
     const [comment, setComment] = useState("");
     const [deliveryDate, setDeliveryDate] = useState("");
     const [deliveryTime, setDeliveryTime] = useState("14:00");
@@ -43,7 +43,7 @@ const ProductGrid = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUserEmail(data.email);
-                setUserRole(data.role); // Imposta il ruolo dell'utente
+                setUserRole(data.role);
             } else {
                 const data = await response.json();
                 console.error("Errore:", data.message || "Errore durante il caricamento dei dati.");
@@ -58,6 +58,10 @@ const ProductGrid = () => {
     }, []);
 
     const createOrder = async (orderData) => {
+        if (orderData.details.length === 0) {
+            alert("Il carrello è vuoto. Aggiungi almeno un prodotto.");
+            return;
+        }
         try {
             const response = await fetch("http://localhost:8080/api/order", {
                 method: "POST",
@@ -123,6 +127,11 @@ const ProductGrid = () => {
     };
 
     const handleCreateOrder = async () => {
+        if (Object.keys(cart).length === 0) {
+            setErrorMessage("Il carrello è vuoto. Aggiungi almeno un prodotto prima di effettuare l'ordine.");
+            return;
+        }
+
         if (isWeekend(deliveryDate)) {
             setErrorMessage("Non è possibile effettuare ordini per il sabato o la domenica. Scegli un altro giorno.");
             return;
@@ -153,7 +162,7 @@ const ProductGrid = () => {
                         stock={product.stock}
                         availability={product.availability}
                         onAddToCart={(productId, quantity) => handleAddToCart(productId, quantity)}
-                        showCartOptions={userRole === "client" || userRole === "admin"} // Condizione per mostrare carrello
+                        showCartOptions={userRole === "client" || userRole === "admin"}
                     />
                 ))}
             </section>
@@ -178,6 +187,7 @@ const ProductGrid = () => {
                     type="text"
                     placeholder="Aggiungi un commento per il pasticcere"
                     onChange={handleComment}
+                    className={styles.commentInput}
                     value={comment}
                 />
 
@@ -185,11 +195,12 @@ const ProductGrid = () => {
                     type="date"
                     onChange={(e) => setDeliveryDate(e.target.value)}
                     value={deliveryDate}
+                    className={styles.dateInput}
                     min={new Date().toISOString().split("T")[0]}
                     required
                 />
 
-                <select value={deliveryTime} onChange={handleDeliveryTimeChange} required>
+                <select value={deliveryTime} onChange={handleDeliveryTimeChange} required className={styles.select}>
                     {availableTimes.map((time) => (
                         <option key={time} value={time}>
                             {time}

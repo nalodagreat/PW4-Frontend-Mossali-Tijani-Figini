@@ -81,7 +81,15 @@
   color: #dc3545; /* Rosso per stato "Esaurito" */
 }
 
-
+.quantityInput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
  
   @media (max-width: 991px) {
     .productCard {

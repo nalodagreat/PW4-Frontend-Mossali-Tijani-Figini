@@ -101,6 +101,9 @@ export default function Orders() {
               <p>
                 <strong>Prezzo Totale:</strong> {order.totalPrice}€
               </p>
+                <p>
+                    <strong>Data:</strong> {new Date(order.deliverDate).toLocaleString()}
+                </p>
               <p>
                 <strong>Status:</strong> {order.status}
               </p>

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import styles from './orderDownloader.module.css';
 
-// Funzione per il download ordini
 const handleDownloadOrders = async (date) => {
     try {
         const response = await fetch(`http://localhost:8080/api/order/date/${date}/export`, {
@@ -33,7 +32,6 @@ const handleDownloadOrders = async (date) => {
     }
 };
 
-// Funzione per il download prodotti
 const handleDownloadProducts = async () => {
     try {
         const response = await fetch(`http://localhost:8080/api/product/export`, {
@@ -74,7 +72,6 @@ export default function OrderAndProductDownloader() {
 
     return (
         <div className={styles.container}>
-            {/* Sezione per scaricare ordini */}
             <div className={styles.downloaderSection}>
                 <h2 className={styles.sectionTitle}>Scarica Ordini</h2>
                 <input
@@ -88,7 +85,6 @@ export default function OrderAndProductDownloader() {
                 </button>
             </div>
 
-            {/* Sezione per scaricare prodotti */}
             <div className={styles.downloaderSection}>
                 <h2 className={styles.sectionTitle}>Scarica Prodotti</h2>
                 <button className={styles.downloadButton} onClick={handleDownloadProducts}>

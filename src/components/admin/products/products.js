@@ -153,7 +153,6 @@ export default function Products() {
         }
     };
 
-    // Effetto per caricare i prodotti quando il componente è montato
     useEffect(() => {
         fetchProducts();
     }, []);
