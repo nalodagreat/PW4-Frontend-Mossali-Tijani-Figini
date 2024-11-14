@@ -37,6 +37,15 @@ const Header = () => {
     checkSession();
   }, []);
 
+  // Disabilita scroll della pagina quando il menu è aperto
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden"; // Disabilita lo scroll della pagina
+    } else {
+      document.body.style.overflow = "auto"; // Abilita lo scroll quando il menu è chiuso
+    }
+  }, [menuOpen]);
+
   const handleLogout = async () => {
     try {
       const response = await fetch("http://localhost:8080/auth/logout", {
@@ -53,20 +62,6 @@ const Header = () => {
     }
   };
 
-  // Funzione per chiudere il menu cliccando fuori dal menu
-  const handleOutsideClick = (e) => {
-    if (menuOpen && !e.target.closest(`.${styles.navigation}`) && !e.target.closest(`.${styles.hamburger}`)) {
-      setMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleOutsideClick);
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, [menuOpen]);
-
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
@@ -76,25 +71,37 @@ const Header = () => {
       </div>
 
       {/* Bottone hamburger per dispositivi mobili */}
-      <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
-        <div className={styles.burgerLine}></div>
-        <div className={styles.burgerLine}></div>
-        <div className={styles.burgerLine}></div>
+      <div
+        className={`${styles.menuIcon} ${menuOpen ? styles.menuOpen : ""}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
 
       {/* Menu navigazione */}
-      <nav className={`${styles.navigation} ${menuOpen ? styles.menuOpen : ""}`}>
+      <nav
+        className={`${styles.navigation} ${menuOpen ? styles.menuOpen : ""}`}
+      >
         {/* X per chiudere il menu */}
         <div className={styles.closeMenu} onClick={() => setMenuOpen(false)}>
           <span>&times;</span>
         </div>
-
+        <div className={styles.desktopNavigation}>
         <a href="/">Home</a>
         <a href="/products">Prodotti</a>
         <a href="/contacts">Contatti</a>
+        </div>
+       
+
+
         {isLoggedIn ? (
           <div className={styles.welcomeSection}>
-            <Link href={isAdmin ? "/admin" : "/user"} className={styles.userLink}>
+            <Link
+              href={isAdmin ? "/admin" : "/user"}
+              className={styles.userLink}
+            >
               Ciao, {userName}
             </Link>
           </div>
@@ -103,6 +110,7 @@ const Header = () => {
             <Image src={profilo} alt="Profilo" className={styles.userIcon} />
           </Link>
         )}
+
         {/* Logout in basso a destra */}
         {isLoggedIn && (
           <button onClick={handleLogout} className={styles.logoutButton}>

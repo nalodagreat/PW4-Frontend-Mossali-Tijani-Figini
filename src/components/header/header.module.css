@@ -1,3 +1,105 @@
+/* Icona del menu hamburger (nascosta di default) */
+.menuIcon {
+  display: none; /* Nascondi di default */
+}
+ 
+/* Stili del menu hamburger e navigazione mobile */
+@media(max-width: 991px) {
+  /* Mostra il menu hamburger solo sui dispositivi mobili */
+  .menuIcon {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    cursor: pointer;
+    position: absolute;
+    right: 20px; /* Posizionato a destra */
+    top: 20px;
+    z-index: 1001; /* Sopra tutto */
+  }
+  
+
+  .menuIcon div {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .menuOpen .menuIcon div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menuOpen .menuIcon div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menuOpen .menuIcon div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Menu di navigazione mobile */
+  .navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f3bc9f;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra gli elementi orizzontalmente */
+    justify-content: center; /* Centra gli elementi verticalmente */
+    z-index: 1000;
+    transform: translateX(100%); /* Fuori vista inizialmente */
+    transition: transform 0.5s ease-in-out;
+    overflow-y: hidden;
+  }
+ 
+  .navigation.menuOpen {
+    transform: translateX(0); /* Porta il menu visibile */
+  }
+
+  .navigation a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  /* Pulsante logout nel menu mobile */
+  .logoutButton {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background: transparent;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* Stili aggiuntivi per pulsante logout e link utente */
+  .logoutButton:hover {
+    color: #d9534f; /* Colore rosso scuro per il logout all’hover */
+  }
+
+  .userLink {
+    color: #901010; /* Colore del link utente */
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .userLink:hover {
+    color: #005b99; /* Colore leggermente più scuro all’hover */
+    text-decoration: underline;
+  }
+}
+
+/* Stili del contenitore dell'intestazione */
 .header {
   background-color: #f3bc9f;
   box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
@@ -16,107 +118,98 @@
   align-items: center;
 }
 
-.navigation {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  color: #000;
-  font: 400 1rem Montserrat, sans-serif;
-}
-
-.navigation a {
-  text-decoration: none;
-  color: inherit;
-  margin-right: 8%;
-}
-
-.socialIcons {
-  display: flex;
-  gap: 2.5rem;
-}
-
-.userIcon, .cartIcon {
-  width: 2.2rem; 
+/* Stili per le icone utente */
+.userIcon {
+  width: 2.2rem;
   height: auto;
 }
 
-/* Hamburger Menu */
-.hamburger {
-  display: none;
-  cursor: pointer;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.burgerLine {
-  width: 2rem;
-  height: 0.2rem;
-  background-color: #000;
-}
-
-/* X per chiudere il menu */
+/* Chiudi menu solo sui dispositivi mobili */
 .closeMenu {
-  position: absolute;
-  top: -0.3rem;
-  right: 1rem;
-  font-size: 4rem;
-  color: #000;
+  display: none; /* Nascondi di default */
+}
+
+@media (max-width: 768px) {
+  .closeMenu {
+    display: block; /* Mostra solo sui dispositivi mobili */
+  }
+}
+
+/* Centro il menu di navigazione solo su desktop */
+.navigation {
+  display: flex;
+  justify-content: center; /* Centra i link orizzontalmente */
+  gap: 2rem; /* Distanza tra i link */
+  width: 100%;
+}
+
+/* Aggiungi il link styling per ogni link di navigazione */
+.navigation a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
-@media (max-width: 991px) {
-  .header {
-    padding: 1rem;
-  }
+.navigation a:hover {
+  color: #D5ABC2;
+  transform: translateY(-3px);
+}
 
-  .logoContainer {
-    margin-right: auto;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
+/* Solo per dispositivi desktop */
+@media (min-width: 992px) {
   .navigation {
-    position: absolute;
-    top: 0;
-    right: -100%;
-    background-color: #f3bc9f;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: right 0.5s ease-in-out; /* Animazione più lenta */
+    justify-content: center; /* Centra i link */
+    flex-grow: 1; /* Flessibilità per il centro */
   }
+}
 
-  .navigation a {
-    font-size: 1.5rem;
-    margin: 1rem 0;
-  }
+/* Allineamento e spostamento a destra dei contenuti utente (icona, testo, logout) */
+.userSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Allinea gli elementi a destra */
+  margin-left: auto; /* Forza l'allineamento a destra */
+}
 
-  .navigation .userLink,
-  .navigation .logoutButton {
-    font-size: 1.2rem;
-  }
+.welcomeText {
+  margin-right: 20px; /* Distanza tra il nome utente e il logout */
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
 
-  /* Menu aperto */
-  .menuOpen {
-    right: 0;
-  }
+/* Allineamento icona utente a destra con le altre sezioni */
+.userIcon {
+  width: 2.2rem;
+  height: auto;
+  margin-left: 20px; /* Distanza tra icona utente e pulsante di logout */
+}
 
-  /* Logout in basso a destra */
-  .logoutButton {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    background: transparent;
-    border: none;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
+/* Pulsante logout */
+.logoutButton {
+  background: transparent;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  color: #d9534f; /* Colore rosso scuro per il logout all’hover */
+}
+.desktopNavigation{
+  display: flex;
+  justify-content: center; /* Centra i link orizzontalmente */
+  gap: 2rem; /* Distanza tra i link */
+  width: 100%;
+}
+@media (max-width: 400px) {
+  .desktopNavigation a {
+    font-size: 1rem; /* Riduce la dimensione del testo */
+    padding: 0.3rem 0.8rem; /* Riduce il padding */
   }
 }
