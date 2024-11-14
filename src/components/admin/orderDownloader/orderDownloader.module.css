@@ -1,4 +1,4 @@
-/* Contenitore principale */
+/* Container principale */
 .container {
   padding: 2rem;
   border-radius: 8px;
@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between; 
   gap: 2rem; 
+  margin-bottom: 5%;
 }
 
 /* Titolo sezione */
@@ -74,4 +75,48 @@
 /* Aggiungi uno spazio tra gli elementi */
 .container > * {
   margin-bottom: 1.5rem;
+}
+
+/* MEDIA QUERY per dispositivi mobili (telefono) */
+@media (max-width: 768px) {
+
+  /* Container principale per il telefono */
+  .container {
+    flex-direction: column; /* Imposta la direzione a colonna */
+    align-items: center; /* Centra i contenuti */
+    gap: 1rem; /* Riduci il gap */
+  }
+
+  /* Sezione downloader */
+  .downloaderSection {
+    max-width: 100%; /* Larghezza piena */
+    margin-bottom: 1rem; /* Distanza tra le sezioni */
+  }
+
+  /* Tabella dei prodotti - Aggiungi scroll orizzontale */
+  .table {
+    width: 100%;
+    overflow-x: auto; /* Permette lo scroll orizzontale per la tabella */
+    display: block;
+  }
+
+  .table th, .table td {
+    font-size: 0.9rem; /* Riduci la dimensione del font per il mobile */
+    padding: 8px;
+  }
+
+  .table th {
+    font-size: 1rem;
+  }
+
+  /* Bottoni della tabella */
+  .button {
+    font-size: 0.8rem; /* Riduci la dimensione del font per il mobile */
+  }
+  
+  /* Paginazione */
+  .pagination button {
+    padding: 8px 12px; /* Riduci la dimensione dei bottoni */
+    font-size: 0.8rem;
+  }
 }

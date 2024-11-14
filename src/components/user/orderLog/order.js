@@ -73,7 +73,7 @@ export default function Order() {
     return (
         <div className={styles.container}>
             <div className={styles.orderBox}>
-                <h1>I tuoi ordini</h1>
+                <h1>I tuoi ordini</h1><br/>
                 {orders.length === 0 ? (
                     <p>Non hai ordini.</p>
                 ) : (
@@ -85,7 +85,7 @@ export default function Order() {
                                 <p>Data Consegna: {new Date(order.deliverDate).toLocaleDateString()}</p>
                                 <p>Commento: {order.comment}</p>
                                 <p>Prezzo Totale: {order.totalPrice}€</p>
-                                <p>Status: {order.status}</p>
+                                <p>Status: {order.status}</p><br/>
                                 <h4>Dettagli Ordine:</h4>
                                 <ul>
                                     {Object.keys(order.details).map((productId) => {
@@ -95,7 +95,7 @@ export default function Order() {
                                                 <p>Prodotto ID: {productId}</p>
                                                 <p>Nome: {detail.name}</p>
                                                 <p>Quantità: {detail.quantity}</p>
-                                                <p>Prezzo: {detail.price}€</p>
+                                                <p>Prezzo: {detail.price}€</p><br/>
                                             </li>
                                         );
                                     })}

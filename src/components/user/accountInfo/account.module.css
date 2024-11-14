@@ -1,73 +1,80 @@
-/* account.module.css */
-
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-    padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh;
+  max-height: 30vh;
+  padding: 1rem;
+  gap: 2rem;
+ 
+}
+
+.accountBox {
+  background-color: #f5f5f5; 
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 90%; /* Larghezza dinamica */
+  max-width: 500px;
+  text-align: left;
+  word-wrap: break-word;
+  margin-top: 20%;
+}
+
+.accountBox h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.accountBox p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.accountBox strong {
+  color: #333;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Responsive per schermi piccoli (mobile) */
+@media (max-width: 480px) {
+  .container {
+      gap: 1rem; /* Riduce il gap tra i container */
   }
-  
+
   .accountBox {
-    background-color: #f5f5f5; 
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    width: 90%; /* Larghezza dinamica */
-    max-width: 500px;
-    text-align: left;
-  }
-  
-  .accountBox h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .accountBox p {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    color: #555;
-  }
-  
-  .accountBox strong {
-    color: #333;
-  }
-  
-  .errorMessage {
-    color: red;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  /* Responsive per schermi piccoli */
-  @media (max-width: 768px) {
-    .accountBox {
-      padding: 1.5rem;
-    }
-  
-    .accountBox h2 {
-      font-size: 1.25rem;
-    }
-  
-    .accountBox p {
-      font-size: 0.9rem;
-    }
-  }
-  
-  /* Responsive per schermi molto piccoli */
-  @media (max-width: 480px) {
-    .accountBox {
       padding: 1rem;
-    }
-  
-    .accountBox h2 {
-      font-size: 1.1rem;
-    }
-  
-    .accountBox p {
-      font-size: 0.85rem;
-    }
+      word-wrap: break-word; /* Forza il ritorno a capo delle parole lunghe */
   }
-  
+
+  .accountBox h2 {
+      font-size: 1.1rem;
+  }
+
+  .accountBox p {
+      font-size: 0.85rem;
+  }
+}
+
+/* Responsive per schermi molto piccoli */
+@media (max-width: 480px) {
+  .accountBox {
+      padding: 1rem;
+  }
+
+  .accountBox h2 {
+      font-size: 1.1rem;
+  }
+
+  .accountBox p {
+      font-size: 0.85rem;
+  }
+}
