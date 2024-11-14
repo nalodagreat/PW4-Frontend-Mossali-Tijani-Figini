@@ -4,6 +4,7 @@ import Image from 'next/image';
 import img1 from '@/public/images/home/information/imgInfo1.webp';
 import img2 from '@/public/images/home/information/imgInfo2.webp';
 import img3 from '@/public/images/home/information/imgInfo3.webp';
+import Link from 'next/link'; // Importa il componente Link
 
 const Information = () => {
   return (
@@ -39,7 +40,9 @@ const Information = () => {
         <Image src={img3} alt="Pasticceria" className={styles.sideImage} width={300} height={300} />
         <div className={styles.shopInvitation}>
           <p style={{marginBottom:"1rem"}}>Visita il nostro shop <br/> per gustare i nostri dolci unici!</p>
-          <button className={styles.shopButton}>Scopri di più</button>
+          <Link href="/products">
+            <button className={styles.shopButton}>Scopri di più</button>
+          </Link>
         </div>
       </div>
     </div>
