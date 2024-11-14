@@ -153,7 +153,7 @@ const ProductGrid = () => {
                         stock={product.stock}
                         availability={product.availability}
                         onAddToCart={(productId, quantity) => handleAddToCart(productId, quantity)}
-                        showCartOptions={userRole === "client" || userRole === "admin"} // Condizione per mostrare carrello
+                        showCartOptions={userRole === "client"} // Condizione per mostrare carrello
                     />
                 ))}
             </section>
