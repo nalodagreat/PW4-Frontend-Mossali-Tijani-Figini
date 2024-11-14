@@ -1,9 +1,7 @@
-'use client';
-
 import React, { useState } from 'react';
 import styles from './card.module.css';
 
-const ProductCard = ({ productId, image, name, price, description, stock, availability, onAddToCart }) => {
+const ProductCard = ({ productId, image, name, price, description, stock, availability, onAddToCart, showCartOptions }) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleQuantityChange = (e) => {
@@ -19,7 +17,7 @@ const ProductCard = ({ productId, image, name, price, description, stock, availa
     return (
         <article className={styles.productCard}>
             <img src={image} alt={name} className={styles.productImage}/>
-            <h3  className={styles.productName}>{name}</h3>
+            <h3 className={styles.productName}>{name}</h3>
             <p className={styles.productDescription}>{description}</p>
             <p
                 className={`${styles.productAvailability} ${
@@ -35,16 +33,14 @@ const ProductCard = ({ productId, image, name, price, description, stock, availa
                 <span className={styles.productPrice}>{price} €</span>
             </div>
 
-            {availability === 'available' && (
+            {availability === 'available' && showCartOptions && (
                 <>
                     <input
                         type="number"
                         min="1"
-                        max={stock}
                         value={quantity}
                         onChange={handleQuantityChange}
                         className={styles.quantityInput}
-                        aria-label={`Scegli la quantità di ${name}`}
                     />
                     <button
                         onClick={handleAddToCartClick}

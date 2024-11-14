@@ -1,4 +1,3 @@
-'use client';
 
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../card/card';
@@ -8,12 +7,12 @@ const ProductGrid = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState({});
     const [userEmail, setUserEmail] = useState("");
+    const [userRole, setUserRole] = useState(""); // Stato per il ruolo dell'utente
     const [comment, setComment] = useState("");
     const [deliveryDate, setDeliveryDate] = useState("");
     const [deliveryTime, setDeliveryTime] = useState("14:00");
-    const [errorMessage, setErrorMessage] = useState(""); // Stato per il messaggio di errore
+    const [errorMessage, setErrorMessage] = useState("");
 
-    // Funzione per generare orari ogni 10 minuti tra le 14:00 e le 18:00
     const generateAvailableTimes = () => {
         const times = [];
         let currentHour = 14;
@@ -44,6 +43,7 @@ const ProductGrid = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUserEmail(data.email);
+                setUserRole(data.role); // Imposta il ruolo dell'utente
             } else {
                 const data = await response.json();
                 console.error("Errore:", data.message || "Errore durante il caricamento dei dati.");
@@ -116,20 +116,18 @@ const ProductGrid = () => {
         setDeliveryTime(event.target.value);
     };
 
-    // Funzione per controllare se la data selezionata è un sabato o una domenica
     const isWeekend = (dateString) => {
         const date = new Date(dateString);
         const day = date.getDay();
-        return day === 0 || day === 6; // 0 è domenica, 6 è sabato
+        return day === 0 || day === 6;
     };
 
     const handleCreateOrder = async () => {
-        // Controlla se la data di consegna è un sabato o una domenica
         if (isWeekend(deliveryDate)) {
             setErrorMessage("Non è possibile effettuare ordini per il sabato o la domenica. Scegli un altro giorno.");
             return;
         } else {
-            setErrorMessage(""); // Resetta il messaggio di errore se la data è valida
+            setErrorMessage("");
         }
 
         const orderData = {
@@ -155,6 +153,7 @@ const ProductGrid = () => {
                         stock={product.stock}
                         availability={product.availability}
                         onAddToCart={(productId, quantity) => handleAddToCart(productId, quantity)}
+                        showCartOptions={userRole === "client" || userRole === "admin"} // Condizione per mostrare carrello
                     />
                 ))}
             </section>
